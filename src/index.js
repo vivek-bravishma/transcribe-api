@@ -18,6 +18,10 @@ const io = new socketIO.Server(server, {
   },
 });
 
+app.get("/", (req, res) => {
+  res.send("Api working");
+});
+
 app.post("/webhook", (req, res) => {
   const data = req.body;
   console.log(data);
