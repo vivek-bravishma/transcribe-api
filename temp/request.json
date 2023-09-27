@@ -1,27 +1,43 @@
-{
-  "method": "POST",
-  "path": "/",
-  "query": {},
-  "client_ip": "34.71.87.251",
-  "url": "https://3cf1baeaf94bfb7d5895e2fa45f203ad.m.pipedream.net/",
-  "bodyRaw": "{\"details\":{\"targetResourceId\":\"7eeb13309f35ababd747b7233775eb996563d2af\",\"targetResourceType\":\"SESSION\",\"transcriptionResults\":[{\"confidence\":0.56351,\"opaqueData\":\"{\\\"endpointId\\\":\\\"6b04978e-f804-4e0f-9508-9ea17f9b29e4\\\"}\",\"sessionID\":\"7eeb13309f35ababd747b7233775eb996563d2af\",\"text\":\" are you at work hello\",\"utcTimestamp\":\"2023-09-15T09:52:19.084\"}]},\"name\":\"TRANSCRIPTION_FINAL\",\"resourceId\":\"bca6be2c-b1fb-4a46-8781-a473e46076c1\",\"resourceType\":\"DIALOG\",\"trigger\":\"SUBSCRIPTION\"}",
-  "body": {
-    "details": {
-      "targetResourceId": "7eeb13309f35ababd747b7233775eb996563d2af",
-      "targetResourceType": "SESSION",
-      "transcriptionResults": [
-        {
-          "confidence": 0.56351,
-          "opaqueData": "{\"endpointId\":\"6b04978e-f804-4e0f-9508-9ea17f9b29e4\"}",
-          "sessionID": "7eeb13309f35ababd747b7233775eb996563d2af",
-          "text": " are you at work hello",
-          "utcTimestamp": "2023-09-15T09:52:19.084"
-        }
-      ]
-    },
-    "name": "TRANSCRIPTION_FINAL",
-    "resourceId": "bca6be2c-b1fb-4a46-8781-a473e46076c1",
-    "resourceType": "DIALOG",
-    "trigger": "SUBSCRIPTION"
-  }
-}
+[
+	{
+		"method": "POST",
+		"path": "/",
+		"query": {},
+		"client_ip": "34.71.87.251",
+		"url": "https://3cf1baeaf94bfb7d5895e2fa45f203ad.m.pipedream.net/",
+		"bodyRaw": "{\"details\":{\"targetResourceId\":\"7eeb13309f35ababd747b7233775eb996563d2af\",\"targetResourceType\":\"SESSION\",\"transcriptionResults\":[{\"confidence\":0.56351,\"opaqueData\":\"{\\\"endpointId\\\":\\\"6b04978e-f804-4e0f-9508-9ea17f9b29e4\\\"}\",\"sessionID\":\"7eeb13309f35ababd747b7233775eb996563d2af\",\"text\":\" are you at work hello\",\"utcTimestamp\":\"2023-09-15T09:52:19.084\"}]},\"name\":\"TRANSCRIPTION_FINAL\",\"resourceId\":\"bca6be2c-b1fb-4a46-8781-a473e46076c1\",\"resourceType\":\"DIALOG\",\"trigger\":\"SUBSCRIPTION\"}",
+		"body": {
+			"details": {
+				"targetResourceId": "7eeb13309f35ababd747b7233775eb996563d2af",
+				"targetResourceType": "SESSION",
+				"transcriptionResults": [
+					{
+						"confidence": 0.56351,
+						"opaqueData": "{\"endpointId\":\"6b04978e-f804-4e0f-9508-9ea17f9b29e4\"}",
+						"sessionID": "7eeb13309f35ababd747b7233775eb996563d2af",
+						"text": " are you at work hello",
+						"utcTimestamp": "2023-09-15T09:52:19.084"
+					}
+				]
+			},
+			"name": "TRANSCRIPTION_FINAL",
+			"resourceId": "bca6be2c-b1fb-4a46-8781-a473e46076c1",
+			"resourceType": "DIALOG",
+			"trigger": "SUBSCRIPTION"
+		}
+	},
+
+	{
+		"intent": "test",
+		"topics": "",
+		"sentiment": "",
+		"transcription_quality": "",
+		"original_language": "",
+		"translated_text": "",
+		"original_text": "{{context.subscriptiontext.details.transcriptionResults[0].text}}",
+		"confidence": "{{context.subscriptiontext.details.transcriptionResults[0].confidence}}",
+		"utcTimestamp": "{{context.subscriptiontext.details.transcriptionResults[0].utcTimestamp}}",
+		"speaker": "{{cc.speaker}}",
+		"bodyRaw": "{{ci.text}}"
+	}
+]
