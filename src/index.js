@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 
-const port = 3000;
+const port = 5154;
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +16,10 @@ const io = new socketIO.Server(server, {
   cors: {
     origin: "*",
   },
+});
+
+app.get("/", (req, res) => {
+  res.send("Api working");
 });
 
 app.post("/webhook", (req, res) => {
