@@ -2,7 +2,6 @@ const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
 const cors = require("cors");
-const crypto = require("crypto");
 
 const app = express();
 const server = http.createServer(app);
@@ -20,7 +19,7 @@ const io = new socketIO.Server(server, {
 	},
 });
 
-let connectedClient = null;
+let connectedClient = [];
 
 app.get("/", (req, res) => {
 	res.send("Api working");
@@ -30,13 +29,10 @@ app.post("/webhook", (req, res) => {
 	const data = req.body;
 	// console.log(data);
 
-	// if (connectedClient) {
-	// 	connectedClient.emit("data", data);
-	// }
-
-	io.emit("data", data);
-
-	// userSockets.forEach((ele) => console.log("==============", ele.id));
+	if (connectedClient) {
+		connectedClient.emit("data", data);
+		console.log("connected clients==> ", connectedClient.id);
+	}
 
 	// const userSocket = userSockets.get(user_id);
 	// if (userSocket) userSocket.emit("data", data);
@@ -54,20 +50,19 @@ app.get("/webhook/reset", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-	connectedClient = socket;
+	connectedClient.push(socket);
 	// console.log("new connection==> ", connectedClient);
 
-	// const userId = socket.handshake.query.userId;
-	const userId = crypto.randomBytes(16).toString("hex");
+	const userId = socket.handshake.query.userId;
 
 	console.log("client connected=> ", userId);
-	console.log("CID==> ", connectedClient.id);
 
 	userSockets.set(userId, socket);
-	// console.log("client connected=> ", userSockets);
+
+	socket.on("setUserId", (userId) => console.log("usr==> ", userId));
 
 	socket.on("disconnect", () => {
-		connectedClient = null;
+		connectedClient = [];
 		console.log("client disconnected");
 		userSockets.delete(userId);
 	});
