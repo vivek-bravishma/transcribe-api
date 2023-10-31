@@ -34,7 +34,10 @@ app.post("/webhook", (req, res) => {
 	// 	connectedClient.emit("data", data);
 	// }
 
-	io.emit("data", data);
+	// io.emit("data", data);
+	userSockets.forEach((socket) => {
+		socket.emit("data", data);
+	});
 
 	// userSockets.forEach((ele) => console.log("==============", ele.id));
 
